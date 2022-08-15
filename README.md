@@ -60,3 +60,15 @@ testC\
 [total time]\
 ![testC](https://user-images.githubusercontent.com/54230867/184660173-30f4be35-f74e-48da-9d3d-4aa4c28ab474.png)
 
+testA\
+setheap:  22s 5.3Gb\
+biheap:   16s 1.2Gb
+
+testB\
+setheap:  24s 5.3Gb\
+biheap:   17s 1.2Gb
+
+testC\
+setheap:  100s 60mb\
+biheap:   20s  18Mb\
+std_sort: 6.4s
