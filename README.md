@@ -70,5 +70,5 @@ biheap:   17s 1.2Gb
 
 testC\
 setheap:  100s 60mb\
-biheap:   20s  18Mb\
+biheap:   20s  18mb\
 std_sort: 6.4s
