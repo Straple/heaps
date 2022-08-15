@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include <vector>
+#include <iostream>
 
 #define VERIFY(condition, message)\
 if(!(condition)){\
@@ -29,23 +30,31 @@ class biheap {
 	// для каждого слоя храниться множество индексов вершин, которые не используются
 	std::vector<std::vector<int>> layers;
 
-	int mylog2(int n) {
+	int get_layer_id(int v) {
 		int cnt = 0;
-		while (n) {
-			n >>= 1;
+		if ((v >> 16)) {
+			cnt += 16;
+			v >>= 16;
+		}
+		if ((v >> 8)) {
+			cnt += 8;
+			v >>= 8;
+		}
+		while (v) {
+			v >>= 1;
 			cnt++;
 		}
-		return cnt;
+		return cnt - 1;
 	}
 
 	// добавляет еще один слой в структуру
-	void expand() {
+	void add_layer() {
 		int v = (1 << layers.size());
 		int end = v * 2;
 		layers.push_back({});
 
 		data.resize(end);
-		used.resize(end, false);
+		used.resize(end);
 
 		while (v != end) {
 			layers.back().push_back(v);
@@ -53,11 +62,88 @@ class biheap {
 		}
 	}
 
+	// перестраивает структуру, уменьшая высоту
+	void rebuild() {
+		// переберем самые глубокие вершины и постараемся закинуть их ближе к корню
+
+		int free_layer = 0;
+
+		auto move_free_layer = [&]() {
+			while (free_layer < layers.size() && layers[free_layer].empty()) {
+				free_layer++;
+			}
+		};
+
+		move_free_layer();
+
+		for (int layer = (int)layers.size() - 1; layer > 0; layer--) {
+
+			int v = (1 << layer);
+
+			for (; v < (1 << layer + 1) && free_layer < layer; v++) {
+				if (used[v]) {
+
+					// удалим вершину v
+					T val = std::move(data[v]);
+					used[v] = false;
+					layers[layer].push_back(v);
+
+					// закинем значение val в структуру
+					{
+						// добавим вершину v
+						int v = layers[free_layer].back();
+						layers[free_layer].pop_back();
+						used[v] = true;
+						data[v] = val;
+
+						bubble(v); // всплывем
+					}
+
+					move_free_layer();
+				}
+			}
+		}
+
+		/*
+		int free_layer = find_free_layer();
+
+		for (int v = data.size() - 1; v > 1 && free_layer != -1 && free_layer < get_layer_id(v); v--) {
+			if (used[v]) {
+				int layer_v = get_layer_id(v); // получим номер слоя текущей вершины
+
+				// найдем лучшее для нее место
+				int i = free_layer;
+
+				// удалим вершину v
+				T val = std::move(data[v]);
+				used[v] = false;
+				layers[layer_v].push_back(v);
+
+				// закинем значение val в структуру
+				{
+					// добавим вершину v
+					int v = layers[i].back();
+					layers[i].pop_back();
+					used[v] = true;
+					data[v] = val;
+
+					bubble(v); // всплывем
+				}
+
+				free_layer = find_free_layer();
+			}
+		}*/
+	}
+
 	// удаляет лишние слои
 	void cut() {
 		while (!layers.empty() && layers.back().size() == (1 << layers.size() - 1)) {
 			data.resize(data.size() - (1 << layers.size() - 1));
+			data.shrink_to_fit();
+
 			used.resize(used.size() - (1 << layers.size() - 1));
+			used.shrink_to_fit();
+
 			layers.pop_back();
 		}
 	}
@@ -103,12 +189,12 @@ class biheap {
 			used[v] = false;
 			T tmp;
 			std::swap(tmp, data[v]);
-			layers[mylog2(v) - 1].push_back(v);
+			layers[get_layer_id(v)].push_back(v);
 		}
 	}
 
 	// вернет -1, если такого слоя нет
-	int find_empty_layer() {
+	int find_free_layer() {
 		for (int i = 0; i < layers.size(); i++) {
 			if (!layers[i].empty()) {
 				return i;
@@ -119,18 +205,39 @@ class biheap {
 
 public:
 
+	int size() {
+		if (data.empty()) {
+			return 0;
+		}
+		int sz = 0;
+		for (int i = 0; i < layers.size(); i++) {
+			sz += layers[i].size();
+		}
+		return data.size() - 1 - sz;
+	}
+
+	void resize() {
+		cut();
+
+		if (size() * 2 < data.size()) {
+			rebuild();
+		}
+
+		cut();
+	}
+
 	bool empty() {
-		return is_used(1);
+		return !is_used(1);
 	}
 
 	void push(const T& val) {
 		// находим минимальный свободный слой
-		int i = find_empty_layer();
+		int i = find_free_layer();
 		if (i == -1) { // если такого нет
 			i = layers.size();
-			expand(); // добавим его
+			add_layer(); // добавим его
 		}
-		
+
 		// добавим вершину v
 		int v = layers[i].back();
 		layers[i].pop_back();
@@ -141,13 +248,13 @@ public:
 	}
 
 	T top() {
-		VERIFY(empty(), "biheap is empty, but you want to check something from it");
+		VERIFY(!empty(), "biheap is empty, but you want to check something from it");
 		return data[1];
 	}
 
 	void pop() {
-		VERIFY(empty(), "biheap is empty, but you want to remove something from it");
+		VERIFY(!empty(), "biheap is empty, but you want to remove something from it");
 		drown(1);
-		cut();
+		resize();
 	}
 };
