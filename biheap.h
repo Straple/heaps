@@ -103,36 +103,6 @@ class biheap {
 				}
 			}
 		}
-
-		/*
-		int free_layer = find_free_layer();
-
-		for (int v = data.size() - 1; v > 1 && free_layer != -1 && free_layer < get_layer_id(v); v--) {
-			if (used[v]) {
-				int layer_v = get_layer_id(v); // получим номер слоя текущей вершины
-
-				// найдем лучшее для нее место
-				int i = free_layer;
-
-				// удалим вершину v
-				T val = std::move(data[v]);
-				used[v] = false;
-				layers[layer_v].push_back(v);
-
-				// закинем значение val в структуру
-				{
-					// добавим вершину v
-					int v = layers[i].back();
-					layers[i].pop_back();
-					used[v] = true;
-					data[v] = val;
-
-					bubble(v); // всплывем
-				}
-
-				free_layer = find_free_layer();
-			}
-		}*/
 	}
 
 	// удаляет лишние слои
@@ -216,10 +186,11 @@ public:
 		return data.size() - 1 - sz;
 	}
 
+	// пытается перестроить структуру, чтобы уменьшить высоту и занимаемую память
 	void resize() {
 		cut();
 
-		if (size() * 2 < data.size()) {
+		if (size() * 3 < data.size()) {
 			rebuild();
 		}
 
