@@ -22,25 +22,26 @@ testA\
 Затем все они будут вытащены
 
 [time]\
-![biheap - testA - time](https://user-images.githubusercontent.com/54230867/184658295-210b8c8f-4477-4e41-b9eb-839f30b8069e.png) ![setheap - testA - time](https://user-images.githubusercontent.com/54230867/184659085-1a10bc09-a166-4f5c-8406-cb4190392dfd.png)
+![biheap - testA - time](https://user-images.githubusercontent.com/54230867/184666048-ffdac925-0a32-4de9-bbfa-fdcf00cd7e41.png) ![setheap - testA - time](https://user-images.githubusercontent.com/54230867/184666095-1b40970a-32a2-411a-81bd-51461a438d45.png)
 
 
 [time with semilogy]\
-![biheap - testA - time - semilogy](https://user-images.githubusercontent.com/54230867/184658468-f784c5ae-0af1-4086-8468-22c8233c6fbb.png) ![setheap - testA - time - semilogy](https://user-images.githubusercontent.com/54230867/184659151-e565046c-0772-40db-9cb1-1c1454e2de4f.png)
+![biheap - testA - time - semilogy](https://user-images.githubusercontent.com/54230867/184666165-d7c89a43-42dc-4942-a89a-5945030b25df.png) !![setheap - testA - time - semilogy](https://user-images.githubusercontent.com/54230867/184666198-ec627d1b-ce79-48fb-afa9-a99e6060f4a1.png)
 
 
 [memory]\
-![biheap - testA - mem](https://user-images.githubusercontent.com/54230867/184658751-0ed9bfaa-2c59-43f6-a025-65f53fc318ca.png) ![setheap - testA - mem](https://user-images.githubusercontent.com/54230867/184658826-83e444ed-eeb1-4308-939c-abbec2dba746.png)
+![biheap - testA - mem](https://user-images.githubusercontent.com/54230867/184666249-2706b644-49e2-4d43-a4a7-2d47b79a94f2.png) ![setheap - testA - mem](https://user-images.githubusercontent.com/54230867/184666259-f51d59ab-8045-48ed-a9c2-6b6352f5ec73.png)
 
 
 testB\
 агалогичен testA, только тут числа будут добавлены в обратном порядке: n, n - 1, ..., 2, 1
 
 [time]\
-![biheap - testB - time](https://user-images.githubusercontent.com/54230867/184659613-d0b0687f-fb3c-49dc-8527-b9610d34efd8.png) ![setheap - testB - time](https://user-images.githubusercontent.com/54230867/184659640-99166cfe-52b0-4326-9610-9653f5f119c5.png)
+![biheap - testB - time](https://user-images.githubusercontent.com/54230867/184666331-f48c51ab-c635-4e30-bdfa-c3a59db4d5de.png) ![setheap - testB - time](https://user-images.githubusercontent.com/54230867/184666343-fb108370-3010-40db-8102-ab1d8eff04fb.png)
 
 [time with semilogy]\
-![biheap - testB - time - semilogy](https://user-images.githubusercontent.com/54230867/184659812-0e2a1ea3-4230-405f-86ea-9513b6b7fc7f.png) ![setheap - testB - time - semilogy](https://user-images.githubusercontent.com/54230867/184659823-15b8cf9f-62e1-4aab-937f-5962dcfcc3d2.png)
+![biheap - testB - time](https://user-images.githubusercontent.com/54230867/184666331-f48c51ab-c635-4e30-bdfa-c3a59db4d5de.png) ![setheap - testB - time](https://user-images.githubusercontent.com/54230867/184666343-fb108370-3010-40db-8102-ab1d8eff04fb.png) ![setheap - testB - time - semilogy](https://user-images.githubusercontent.com/54230867/184666388-8c66e3dd-afe5-434d-8242-1d78f816efa7.png)
+
 
 
 
@@ -49,16 +50,16 @@ testC\
 затем все эти массивы будут отсортированы с помощью кучи
 
 [biheap time]\
-![biheap - testC - time](https://user-images.githubusercontent.com/54230867/184660097-f9df7a7f-abb7-4772-bf56-54b1783241d1.png)
+![biheap - testC - time](https://user-images.githubusercontent.com/54230867/184666450-056c0838-8f32-4fc7-972b-39516e609fa9.png)
 
 [setheap time]\
-![setheap - testC - time](https://user-images.githubusercontent.com/54230867/184659980-433632a6-5aca-40b3-aac1-1788418814fc.png)
+![setheap - testC - time](https://user-images.githubusercontent.com/54230867/184666482-00ef1d3b-d778-40e5-bd45-7b07ccfef1d8.png)
 
 [std::sort time]\
-![std_sort - testC - time](https://user-images.githubusercontent.com/54230867/184660145-e43d22fc-e895-4c22-886e-baf2fa2874f8.png)
+![std_sort - testC - time](https://user-images.githubusercontent.com/54230867/184666507-a501f2ad-f369-41de-90d9-f93922f4f6e3.png)
 
 [total time]\
-![testC](https://user-images.githubusercontent.com/54230867/184660173-30f4be35-f74e-48da-9d3d-4aa4c28ab474.png)
+![testC](https://user-images.githubusercontent.com/54230867/184666520-99646121-4b14-4080-a4c5-47f55be21507.png)
 
 testA\
 setheap:  22s 5.3Gb\
