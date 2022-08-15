@@ -40,7 +40,8 @@ testB\
 ![biheap - testB - time](https://user-images.githubusercontent.com/54230867/184666331-f48c51ab-c635-4e30-bdfa-c3a59db4d5de.png) ![setheap - testB - time](https://user-images.githubusercontent.com/54230867/184666343-fb108370-3010-40db-8102-ab1d8eff04fb.png)
 
 [time with semilogy]\
-![biheap - testB - time](https://user-images.githubusercontent.com/54230867/184666331-f48c51ab-c635-4e30-bdfa-c3a59db4d5de.png) ![setheap - testB - time](https://user-images.githubusercontent.com/54230867/184666343-fb108370-3010-40db-8102-ab1d8eff04fb.png) ![setheap - testB - time - semilogy](https://user-images.githubusercontent.com/54230867/184666388-8c66e3dd-afe5-434d-8242-1d78f816efa7.png)
+![biheap - testB - time - semilogy](https://user-images.githubusercontent.com/54230867/184666915-a26da449-a77b-4347-a4c4-dcd5d17516b2.png) ![setheap - testB - time - semilogy](https://user-images.githubusercontent.com/54230867/184666924-24a3c4db-e853-430e-8f02-9467210ecc40.png)
+
 
 
 
