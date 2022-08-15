@@ -1,5 +1,8 @@
 # heaps
- 
+
+# setheap
+надстройка над std::multiset
+
 # biheap
 бинарная куча с минимумом
 * empty O(1)
@@ -11,7 +14,8 @@
 
 Далее\
 biheap слева\
-std::multiset справа
+setheap справа\
+n = 10^8
 
 testA\
 В кучу будут последовательно добавлены числа 1, 2, 3, ..., n\
@@ -30,7 +34,7 @@ testA\
 
 
 testB\
-агалогичен testA, только тут числа будут добавлены в обратном порядке: n, n - 1, ..., 2, 1\
+агалогичен testA, только тут числа будут добавлены в обратном порядке: n, n - 1, ..., 2, 1
 
 [time]\
 ![biheap - testB - time](https://user-images.githubusercontent.com/54230867/184659613-d0b0687f-fb3c-49dc-8527-b9610d34efd8.png) ![setheap - testB - time](https://user-images.githubusercontent.com/54230867/184659640-99166cfe-52b0-4326-9610-9653f5f119c5.png)
@@ -47,7 +51,7 @@ testC\
 [biheap time]\
 ![biheap - testC - time](https://user-images.githubusercontent.com/54230867/184660097-f9df7a7f-abb7-4772-bf56-54b1783241d1.png)
 
-[std::mulltiset time]\
+[setheap time]\
 ![setheap - testC - time](https://user-images.githubusercontent.com/54230867/184659980-433632a6-5aca-40b3-aac1-1788418814fc.png)
 
 [std::sort time]\
