@@ -75,3 +75,21 @@ testC\
 setheap:  100s 60mb\
 biheap:   20s  18mb\
 std_sort: 6.4s
+
+
+testD\
+будет рандомно изменяться размер кучи
+
+[time]\
+![biheap - testD - time](https://user-images.githubusercontent.com/54230867/187486763-8fd2b617-229e-4eca-8be9-bc2f9a6c16a0.png) ![setheap - testD - time](https://user-images.githubusercontent.com/54230867/187486805-96f1528a-7fdd-4ffd-81bf-7a1f03ed2108.png)
+
+
+[mem]\
+![biheap - testD - mem](https://user-images.githubusercontent.com/54230867/187486850-b3533718-fcdb-460c-9d6a-10ed69e2db55.png) ![setheap - testD - mem](https://user-images.githubusercontent.com/54230867/187486896-e68eaaa4-8c30-4183-9717-2e718736e5f6.png)
+
+
+[size]\
+![biheap - testD - size](https://user-images.githubusercontent.com/54230867/187486926-51eca197-2203-4c36-8a89-16f54936f484.png)
+
+
+ИТОГ: setheap очень сильно уступает biheap. testD считался более двух часов на setheap, а для biheap все посчиталось за пару миннут
