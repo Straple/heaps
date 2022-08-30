@@ -99,7 +99,7 @@ void explore_time_heap() {
 	ofstream output("test.csv");
 
 	output << fixed << setprecision(10);
-	//output << "time memory\n";
+	output << "time memory size\n";
 
 	/* test A
 	* в этом тесте в кучу будут последовательно добавлены числа 1, 2, 3, ..., n
@@ -189,7 +189,7 @@ void explore_time_heap() {
 	*  в этом тесте будут рандомно сгенированы 100 массивов длины 10^6
 	*  а затем отсортированы с помощью кучи
 	*/
-	{
+	/*{
 		output << "time\n";
 		int len = 1e6;
 		for (int i = 0; i < 100; i++) {
@@ -213,7 +213,7 @@ void explore_time_heap() {
 				output << time << "\n";
 			}
 
-			/*Timer t;
+			Timer t;
 
 			for (int i = 0; i < len; i++) {
 				heap.push(a[i]);
@@ -233,10 +233,48 @@ void explore_time_heap() {
 			max_time = max(max_time, time);
 			all_time += time;
 
-			output << time << " setheap\n";*/
+			output << time << " setheap\n";
 		}
 
 		cout << "C: " << max_time << "s " << all_time << "s\n";
+	}*/
+
+	/* testD
+	*  stresstest
+	*/
+	{
+		int n = 1e8;
+		for (int step = 0; step < 100; step++) {
+			int to_size = (rnd() % 100) * (n / 100);
+
+			int old_heap_size = heap.size();
+
+			Timer t;
+
+			auto relax = [&]() {
+				if (abs((int)heap.size() - old_heap_size) == 10000) {
+					old_heap_size = heap.size();
+					double time = t.time();
+
+					output << time << " " << heap.calc_mem() << " " << heap.size() << "\n";
+
+					t.reset();
+				}
+			};
+
+			while (heap.size() < to_size) {
+				heap.push(rnd());
+
+				relax();
+			}
+			while (heap.size() > to_size) {
+				heap.pop();
+
+				relax();
+			}
+
+			std::cout << "hi: " << step << "\n";
+		}
 	}
 }
 
